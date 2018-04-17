@@ -1,16 +1,37 @@
 package entity;
 
 import java.util.Date;
+import javax.persistence.*;
 
+
+@Entity
+@Table(name ="cliente")
 public class Cliente {
 	
+	@Id
+	@Column(name = "partita_iva")
 	private String partitaIva;
+	
+	@Column(name = "nome")
 	private String nome;
+	
+	@Column(name = "settore_competenza")
 	private String settoreCompetenza;
+	
+	@Column(name = "indirizzo")
 	private String indirizzo;
+	
+	@Column(name = "telefono")
 	private String telefono;
+	
+	@Column(name = "mail")
 	private String mail;
-	private Date dataInizio;
+	
+	@Column(name = "data_inizio_collaborazione")
+	@Temporal(TemporalType.DATE)
+	private Date dataInizioCollaborazione;
+	
+	
 	public String getPartitaIva() {
 		return partitaIva;
 	}
@@ -47,12 +68,13 @@ public class Cliente {
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
-	public Date getDataInizio() {
-		return dataInizio;
+	public Date getDataInizioCollaborazione() {
+		return dataInizioCollaborazione;
 	}
-	public void setDataInizio(Date dataInizio) {
-		this.dataInizio = dataInizio;
+	public void setDataInizioCollaborazione(Date dataInizioCollaborazione) {
+		this.dataInizioCollaborazione = dataInizioCollaborazione;
 	}
+
 	
 	
 }
