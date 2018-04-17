@@ -2,20 +2,46 @@ package entity;
 
 import java.util.Date;
 
+import org.hibernate.annotations.Entity;
+
+@Entity
+@Table(name="dipendente")
 public class Dipendente {
 	
+	@Id
+	@Column(name="personal_code")
 	private String personalCode;
-	private String nome;
-	private String cognome;
-	private String indirizzo;
-	private String mail;
-	private String telefono;
-	private String mansione;
-	private String livelloSeniority;
-	private String sottopostoA;
-	private Date dataDiNascita;
-	private Date dataAssunzione;
 	
+	@Column(name="nome")
+	private String nome;
+	
+	@Column(name="cognome")
+	private String cognome;
+	
+	@Column(name="indirizzo")
+	private String indirizzo;
+	
+	@Column(name="mail")
+	private String mail;
+	
+	@Column(name="telefono")
+	private String telefono;
+	
+	@Column(name="mansione")
+	private String mansione;
+	
+	@Column(name="livello_seniority")
+	private String livelloSeniority;
+	
+	@Column(name="sottoposto_a")
+	private String sottopostoA;
+	
+	@Column(name="data_nascita")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dataDiNascita;
+	
+	@Column(name="data_assunzione")
+	private Date dataAssunzione;
 	
 	public String getPersonalCode() {
 		return personalCode;
@@ -84,9 +110,4 @@ public class Dipendente {
 		this.dataAssunzione = dataAssunzione;
 	}
 	
-	
-
-	
-	
-
 }
