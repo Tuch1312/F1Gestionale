@@ -2,7 +2,8 @@ package entity;
 
 import java.util.Date;
 
-import org.hibernate.annotations.Entity;
+import javax.persistence.*;
+
 
 @Entity
 @Table(name="dipendente")
