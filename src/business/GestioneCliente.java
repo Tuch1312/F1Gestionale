@@ -1,16 +1,20 @@
 package business;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.hibernate.*;
-import org.hibernate.mapping.List;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-import utils.*;
+import utils.SessionInstance;
+
+import entity.Cliente;
 
 public class GestioneCliente {
 	
-	public List<Cliente> getAllClienti(){
+	public List <Cliente> getAllClienti(){
 		
-		List<Cliente> clienti = new List<>();
+		List <Cliente> clienti = new ArrayList <>();
 		
 		Session session = SessionInstance.getSessionInstance();
 		Transaction transaction = session.beginTransaction();

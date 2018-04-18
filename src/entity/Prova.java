@@ -1,25 +1,14 @@
 package entity;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-
 import business.GestioneDipendente;
-import utils.SessionInstance;
 
 public class Prova {
 	
 	public static void main (String [] args) {
 		
-		GestioneCliente gc = new GestioneCliente();
-		List<Cliente> clienti =  new  List<>();
-		clienti = gc.getAllClienti();
-		
-		for(Clienti c : clienti)
-			System.out.print(c.getPersonaICode()+","+c.getNome()+","+c.getCognome());
 		GestioneDipendente gd = new GestioneDipendente();
 		List <Dipendente> dipendenti = new ArrayList <>();
 		dipendenti = gd.getAllDipendenti();
@@ -47,9 +36,7 @@ public class Prova {
 		
 			
 		session.save(dipendente);
-		trans.commit();
-		*/
-		
+		trans.commit();*/
 		
 	}
 
