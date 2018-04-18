@@ -16,6 +16,14 @@ public class Prova {
 		for (Dipendente d : dipendenti)
 			System.out.println(d.getPersonalCode()+", "+d.getNome()+", "+d.getCognome());
 		
+		Dipendente dipendenteDaAggiornare = dipendenti.get(0);
+		
+		Dipendente newDipendente = dipendenteDaAggiornare;
+		newDipendente.setNome("Lorenzo");
+		newDipendente.setCognome("Garavaglia");
+		
+		gd.updateDipendente(dipendenteDaAggiornare, newDipendente);
+		
 		/*Session session = SessionInstance.getSessionInstance();
 		
 		Transaction trans = session.beginTransaction();

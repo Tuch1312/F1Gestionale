@@ -3,6 +3,7 @@ package business;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -12,20 +13,83 @@ import utils.SessionInstance;
 
 public class GestioneDipendente {
 	
+	public GestioneDipendente () {}
+	
 	public List <Dipendente> getAllDipendenti (){
 		
 		List <Dipendente> dipendenti = new ArrayList <>();
 		
-		Session session = SessionInstance.getSessionInstance();
-		Transaction transaction = session.beginTransaction();
+		Session localSession = SessionInstance.getSessionInstance();
+		Transaction transaction = localSession.beginTransaction();
 		
-		Query query = session.createQuery("from Dipendente");
-		dipendenti = query.list();
+		try {
+			
+			Query query = localSession.createQuery("from Dipendente");
+			dipendenti = query.list();
+			
+		}catch(HibernateException e) {
+			
+			System.out.println("#ERR C'è stato un errore con il recupero dei dipendenti");
+		}
 		
 		transaction.commit();
-		session.close();
+		localSession.close();
 		
 		return dipendenti;
+	}
+	
+	public boolean addDipendente (Dipendente dipendente) {
+		
+		Session localSession = SessionInstance.getSessionInstance();
+		Transaction transaction = localSession.beginTransaction();
+		
+		try {
+			
+			localSession.save(dipendente);
+		}catch(HibernateException e) {
+			
+			System.out.println("#ERR C'è stato un errore cercando di aggiungere un dipendente");
+			return false;
+		}
+		
+		transaction.commit();
+		localSession.close();
+		
+		return true;
+	}
+	
+	public boolean updateDipendente (Dipendente oldDipendente, Dipendente newDipendente) {
+		
+		Session localSession = SessionInstance.getSessionInstance();
+		Transaction transaction = localSession.beginTransaction();
+		
+		localSession.evict(oldDipendente);
+		 
+		oldDipendente.setNome(newDipendente.getNome());
+		oldDipendente.setCognome(newDipendente.getCognome());
+		oldDipendente.setDataAssunzione(newDipendente.getDataAssunzione());
+		oldDipendente.setDataDiNascita(newDipendente.getDataDiNascita());
+		oldDipendente.setIndirizzo(newDipendente.getIndirizzo());
+		oldDipendente.setLivelloSeniority(newDipendente.getLivelloSeniority());
+		oldDipendente.setMansione(newDipendente.getMansione());
+		oldDipendente.setMail(newDipendente.getMail());
+		oldDipendente.setSottopostoA(newDipendente.getSottopostoA());
+		oldDipendente.setTelefono(newDipendente.getTelefono());
+		
+		try {
+			
+			localSession.update(oldDipendente);
+			
+		}catch(HibernateException e) {
+			
+			System.out.println("#ERR C'è stato un errore durante l'update di un dipendente");
+			return false;
+		}
+		
+		transaction.commit();
+		localSession.close();
+		
+		return true;
 	}
 
 }

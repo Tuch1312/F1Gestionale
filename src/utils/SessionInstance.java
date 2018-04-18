@@ -9,21 +9,18 @@ import entity.Dipendente;
 public class SessionInstance {
 	
 	private static SessionFactory factory;
-	private static Session session;
 	
 	private SessionInstance () {}
 	
 	public static Session getSessionInstance () {
 		
-		if (factory == null || session == null) {
+		if (factory == null)
 			
 			factory = new Configuration().configure("utils/hibernate.cfg.xml")
 					.addAnnotatedClass(Dipendente.class).buildSessionFactory();
-			
-			session = factory.getCurrentSession();
-		}
 		
-		return session;
+		
+		return factory.getCurrentSession();
 	}
 
 }
