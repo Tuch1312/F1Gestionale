@@ -111,4 +111,11 @@ public class Dipendente {
 		this.dataAssunzione = dataAssunzione;
 	}
 	
+	@Override
+	public String toString () {
+		
+		return personalCode+" "+nome+" "+cognome+" "+indirizzo+" "+mail+" "+telefono+" "+mansione+" "+livelloSeniority+""
+				+" "+sottopostoA+" "+dataDiNascita+" "+mansione;
+	}
+	
 }

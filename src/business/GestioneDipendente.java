@@ -6,7 +6,6 @@ import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
 import entity.Dipendente;
 import utils.SessionInstance;
@@ -15,6 +14,7 @@ public class GestioneDipendente {
 	
 	public GestioneDipendente () {}
 	
+	@SuppressWarnings("unchecked")
 	public List <Dipendente> getAllDipendenti (){
 		
 		List <Dipendente> dipendenti = new ArrayList <>();
@@ -24,9 +24,8 @@ public class GestioneDipendente {
 		
 		try {
 			
-			Query query = localSession.createQuery("from Dipendente");
-			dipendenti = query.list();
-			
+			dipendenti = localSession.createQuery("from Dipendente").list();
+		
 		}catch(HibernateException e) {
 			
 			System.out.println("#ERR C'è stato un errore con il recupero dei dipendenti");
@@ -99,11 +98,9 @@ public class GestioneDipendente {
 		Session localSession = SessionInstance.getSessionInstance();
 		Transaction transaction = localSession.beginTransaction();
 		
-		Query query = localSession.createQuery("from Dipendente d where d.personalCode = '"+personalCode+"'");
-		
 		try {
 			
-			dipendente = (Dipendente) query.getSingleResult();
+			dipendente = (Dipendente) localSession.createQuery("from Dipendente d where d.personalCode = '"+personalCode+"'").getSingleResult();
 			
 		}catch(HibernateException e) {
 			
