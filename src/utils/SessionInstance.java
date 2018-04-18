@@ -17,7 +17,7 @@ public class SessionInstance {
 		
 		if (factory == null || session == null) {
 			
-			factory = new Configuration().configure("entity/hibernate.cfg.xml")
+			factory = new Configuration().configure("utils/hibernate.cfg.xml")
 					.addAnnotatedClass(Dipendente.class).buildSessionFactory();
 			
 			session = factory.getCurrentSession();

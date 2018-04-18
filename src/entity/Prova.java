@@ -16,7 +16,7 @@ public class Prova {
 		Transaction trans = session.beginTransaction();
 		
 		Dipendente dipendente = new Dipendente();
-		dipendente.setPersonalCode("giacomo");
+		dipendente.setPersonalCode("lorenzo");
 		dipendente.setNome("prova");
 		dipendente.setCognome("prove");
 		dipendente.setDataAssunzione(new Date());
