@@ -16,13 +16,16 @@ public class Prova {
 		for (Dipendente d : dipendenti)
 			System.out.println(d.getPersonalCode()+", "+d.getNome()+", "+d.getCognome());
 		
-		Dipendente dipendenteDaAggiornare = dipendenti.get(0);
+		/*Dipendente dipendenteDaAggiornare = dipendenti.get(0);
 		
 		Dipendente newDipendente = dipendenteDaAggiornare;
 		newDipendente.setNome("Lorenzo");
 		newDipendente.setCognome("Garavaglia");
 		
-		gd.updateDipendente(dipendenteDaAggiornare, newDipendente);
+		gd.updateDipendente(dipendenteDaAggiornare, newDipendente);*/
+		
+		Dipendente d = gd.getDipendente("a");
+		System.out.println("Dipendente recuperato = "+d.getNome()+", "+d.getCognome());
 		
 		/*Session session = SessionInstance.getSessionInstance();
 		

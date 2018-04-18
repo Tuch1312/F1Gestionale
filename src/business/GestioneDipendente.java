@@ -91,5 +91,28 @@ public class GestioneDipendente {
 		
 		return true;
 	}
-
+	
+	public Dipendente getDipendente (String personalCode) {
+		
+		Dipendente dipendente = null;
+		
+		Session localSession = SessionInstance.getSessionInstance();
+		Transaction transaction = localSession.beginTransaction();
+		
+		Query query = localSession.createQuery("from Dipendente d where d.personalCode = '"+personalCode+"'");
+		
+		try {
+			
+			dipendente = (Dipendente) query.getSingleResult();
+			
+		}catch(HibernateException e) {
+			
+			System.out.println("#ERR C'è stato un errore con il recupero del dipendente");
+		}
+		
+		transaction.commit();
+		localSession.close();
+		
+		return dipendente;
+	}
 }
