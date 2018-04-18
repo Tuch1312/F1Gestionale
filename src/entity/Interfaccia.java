@@ -14,6 +14,8 @@ public class Interfaccia {
 	
 	public static void main (String [] args) {
 		
+		Scanner scanner = null;
+		
 		GestioneDipendente gd = new GestioneDipendente();
 		
 		List <Dipendente> dipendenti = null;
@@ -28,12 +30,12 @@ public class Interfaccia {
 		System.out.println("Digita 4 per aggiornare le info di un dipendente");
 		System.out.println("____________________");
 		
-		Scanner scanner = new Scanner(System.in);
-		
 		boolean esci = false;
 		int cmd = 0;
 		
 		do {
+			
+			scanner = new Scanner (System.in);
 			
 			System.out.println();
 			System.out.println("Cosa vuoi fare?");
@@ -71,13 +73,16 @@ public class Interfaccia {
 					
 					System.out.println();
 					System.out.println("Inserisci un personal code ... ");
-					personalCode = scanner.nextLine();
+					System.out.print("");	
 					
+					scanner = new Scanner (System.in);
+					
+					personalCode = scanner.nextLine();
 					dipendente = gd.getDipendente(personalCode);
 					
 					if (dipendente != null) 
 						
-						dipendente.toString();
+						System.out.println(dipendente.toString());
 					else
 						System.out.println("Nella base dati non esiste alcun dipendente con il personal code "+personalCode);
 						
