@@ -11,7 +11,13 @@ public class Prova {
 	
 	public static void main (String [] args) {
 		
-		Session session = SessionInstance.getSessionInstance();
+		GestioneCliente gc = new GestioneCliente();
+		List<Cliente> clienti =  new  List<>();
+		clienti = gc.getAllClienti();
+		
+		for(Clienti c : clienti)
+			System.out.print(c.getPersonaICode()+","+c.getNome()+","+c.getCognome());
+		/*Session session = SessionInstance.getSessionInstance();
 		
 		Transaction trans = session.beginTransaction();
 		
@@ -32,7 +38,7 @@ public class Prova {
 			
 		session.save(dipendente);
 		trans.commit();
-		
+		*/
 	}
 
 }
