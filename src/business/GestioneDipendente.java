@@ -3,6 +3,8 @@ package business;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.NoResultException;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -103,6 +105,9 @@ public class GestioneDipendente {
 			dipendente = (Dipendente) localSession.createQuery("from Dipendente d where d.personalCode = '"+personalCode+"'").getSingleResult();
 			
 		}catch(HibernateException e) {
+			
+			System.out.println("#ERR C'è stato un errore con il recupero del dipendente");
+		}catch(NoResultException e2) {
 			
 			System.out.println("#ERR C'è stato un errore con il recupero del dipendente");
 		}
